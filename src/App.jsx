@@ -3,7 +3,7 @@ import SignIn from "./pages/SignIn/Index.jsx";
 import SignUp from "./pages/SignUp/Index.jsx";
 import Home from "./pages/Home/Home.jsx";
 
-import {UserContextProvider} from "./context/UserContext";
+import {UserContextProvider} from "./context/SessionContext";
 
 function App() {
     return (

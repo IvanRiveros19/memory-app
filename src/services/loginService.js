@@ -1,15 +1,16 @@
 import HandleError from "./axiosHandleError";
 import axiosConfig from "./axiosConfig";
 
-export default function login({username, password}) {
-    axiosConfig.put('/auth', {
-        username, password
-    }).then((res) => {
-        return res.data;
-    }).catch((error) => {
+export default async function login({username, password}) {
+    try {
+        const response = await axiosConfig.put('/auth', {
+            username, password
+        });
+        return response.data;
+    } catch (e) {
         return {
-            'status': false,
-            'message': HandleError(error)
+            status: false,
+            message: HandleError(e)
         }
-    });
+    }
 }

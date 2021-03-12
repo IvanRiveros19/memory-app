@@ -1,15 +1,17 @@
 import HandleError from "./axiosHandleError";
 import axiosConfig from "./axiosConfig";
 
-export default function signUp(data) {
-    axiosConfig.post('/registro',{
-        name: data.name, lastName: data.lastName, username: data.username, password: data.password
-    }).then((res) => {
-        return res.data;
-    }).catch((error) => {
+export default async function signUp({name, lastName, username, password}) {
+    try {
+        const response = await axiosConfig.post('/registro',{
+            name, lastName, username, password
+        });
+        console.log(response);
+        return response.data;
+    } catch (e) {
         return {
-            'status': false,
-            'message': HandleError(error)
+            status: false,
+            message: HandleError(e)
         }
-    });
+    }
 }

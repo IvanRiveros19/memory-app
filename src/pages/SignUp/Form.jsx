@@ -5,7 +5,8 @@ import Input from "../../components/Input/Input.jsx";
 import Button from "../../components/Button/Button.jsx";
 import Spinner from "../../components/Spinner/Spinner.jsx";
 import Message from "../../components/Message/Message.jsx";
-import useUser from "../../hooks/useUser";
+
+import signUpService from "../../services/signUpService";
 
 const Form = () => {
     const [name, setName] = useState('');
@@ -17,8 +18,6 @@ const Form = () => {
     const [errorPassword, setErrorPassword] = useState(false);
     const [loading, setLoading] = useState(false);
     const [errorText, setErrorText] = useState('');
-
-    const {signUp} = useUser();
 
     const location = useLocation();
     const history = useHistory();
@@ -45,11 +44,12 @@ const Form = () => {
             setErrorPassword(false);
         }*/
         setLoading(true);
-        const result = await signUp({name, lastName, username, password});
+        const result = await signUpService({name, lastName, username, password});
+        console.log(result);
         setLoading(false);
         if (result.status) {
             setErrorText('');
-            window.location.href = '/';
+            //window.location.href = '/';
         } else {
             setErrorText(result.message);
         }

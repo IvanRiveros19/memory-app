@@ -5,7 +5,7 @@ import Input from "../../components/Input/Input.jsx";
 import Button from "../../components/Button/Button.jsx";
 import Spinner from "../../components/Spinner/Spinner.jsx";
 import Message from "../../components/Message/Message.jsx";
-import useUser from "../../hooks/useUser";
+import useSession from "../../hooks/useSession";
 
 const Form = () => {
     const [user, setUser] = useState('');
@@ -18,7 +18,7 @@ const Form = () => {
     const location = useLocation();
     const history = useHistory();
 
-    const {isLogged, login} = useUser();
+    const {isLogged, login} = useSession();
 
     useEffect(() => {
         if (isLogged) window.location.href = '/home';
